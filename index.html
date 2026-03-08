@@ -218,7 +218,14 @@ body{font-family:'Noto Serif TC',serif;background:var(--night);color:var(--cream
 .f-venue-item{display:flex;flex-direction:column;gap:.3rem;padding:.6rem;border-right:1px solid rgba(201,168,76,.08);}
 .f-venue-item:last-child{border-right:none;}
 .f-venue-date{font-family:'Shippori Mincho B1',serif;font-weight:800;font-size:clamp(.95rem,3.5vw,1.4rem);letter-spacing:.06em;color:var(--gold);}
-.f-venue-name{font-family:'Noto Serif TC',serif;font-weight:200;font-size:clamp(.62rem,2.2vw,.78rem);letter-spacing:.12em;color:rgba(248,242,228,.6);line-height:1.6;}
+.f-venue-name{font-family:'Noto Serif TC',serif;font-weight:700;font-size:clamp(.72rem,2.6vw,.92rem);letter-spacing:.08em;color:rgba(248,242,228,.92);line-height:1.6;}
+@media(max-width:600px){
+  .f-venues{grid-template-columns:1fr;gap:0;}
+  .f-venue-item{flex-direction:row;align-items:center;justify-content:space-between;border-right:none;border-bottom:1px solid rgba(201,168,76,.1);padding:.9rem .4rem;}
+  .f-venue-item:last-child{border-bottom:none;}
+  .f-venue-date{font-size:1.05rem;min-width:3.2rem;}
+  .f-venue-name{font-size:.88rem;flex:1;padding:0 .6rem;}
+}
 .f-btns{display:flex;flex-direction:column;gap:.7rem;max-width:360px;}
 .btn-fill{display:block;text-align:center;padding:.95rem 1.4rem;font-family:'Cormorant Garamond',serif;font-size:.88rem;letter-spacing:.18em;text-decoration:none;border:none;cursor:pointer;transition:background .2s,color .2s;}
 .btn-fill.gold{background:var(--gold);color:var(--night);}
@@ -235,6 +242,24 @@ body{font-family:'Noto Serif TC',serif;background:var(--night);color:var(--cream
 
 /* AMBIENT BTN */
 #amb{position:fixed;bottom:1.2rem;right:1.2rem;z-index:300;width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,168,76,.3);background:rgba(13,27,42,.8);backdrop-filter:blur(8px);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
+/* VENUE FOLLOW LINK */
+.venue-follow{display:inline-block;font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:.65rem;letter-spacing:.14em;color:var(--night);background:var(--gold);text-decoration:none;padding:.3rem .75rem;border-radius:2px;margin-top:.3rem;transition:background .2s,transform .15s;}
+.venue-follow:hover{background:var(--gold2);transform:translateY(-1px);}
+@media(max-width:600px){.venue-follow{margin-top:0;white-space:nowrap;}}
+
+/* LEGAL BAR */
+.legal-bar{background:#000;color:#fff;text-align:center;padding:1rem 1.4rem;font-family:'Noto Serif TC',serif;font-weight:200;font-size:1rem;letter-spacing:.14em;line-height:2.2;}
+
+/* PARTNER BAR */
+.partner-bar{background:#000;display:flex;align-items:center;justify-content:center;gap:clamp(1.2rem,4vw,3rem);padding:1.6rem 1.4rem;border-top:1px solid rgba(255,255,255,.08);}
+.partner-logo{display:flex;align-items:center;opacity:.75;transition:opacity .2s,transform .2s;flex-shrink:0;}
+.partner-logo:hover{opacity:1;transform:scale(1.06);}
+.partner-logo img{height:clamp(22px,4vw,36px);width:auto;filter:brightness(0) invert(1);}
+@media(max-width:480px){
+  .partner-bar{gap:clamp(.8rem,3vw,1.6rem);padding:1.2rem .8rem;flex-wrap:wrap;}
+  .partner-logo img{height:20px;}
+}
 </style>
 </head>
 <body>
@@ -244,13 +269,13 @@ body{font-family:'Noto Serif TC',serif;background:var(--night);color:var(--cream
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <span>9% LOW ABV</span><span class="ac">✦</span>
+    <span>15% ABV</span><span class="ac">✦</span>
     <span>福岡縣大賀酒造</span><span class="ac">✦</span>
     <span>福岡夢酵母1號</span><span class="ac">✦</span>
     <span>YUMEBOTARU</span><span class="ac">✦</span>
     <span>低溫發酵</span><span class="ac">✦</span>
     <span>夏夜螢光</span><span class="ac">✦</span>
-    <span>9% LOW ABV</span><span class="ac">✦</span>
+    <span>15% ABV</span><span class="ac">✦</span>
     <span>福岡縣大賀酒造</span><span class="ac">✦</span>
     <span>福岡夢酵母1號</span><span class="ac">✦</span>
     <span>YUMEBOTARU</span><span class="ac">✦</span>
@@ -324,50 +349,7 @@ body{font-family:'Noto Serif TC',serif;background:var(--night);color:var(--cream
   </div>
 </section>
 
-<!-- §3 SPECS -->
-<section id="specs" class="sec">
-  <div class="eyebrow">
-    <h2>職人與工法</h2><span>✦</span>
-  </div>
-
-  <!-- Glowing ring chart -->
-  <div class="ring-wrap">
-    <div class="ring-chart">
-      <svg viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(201,168,76,.08)" stroke-width="8"/>
-        <circle cx="60" cy="60" r="50" fill="none" stroke="url(#goldGrad)" stroke-width="8"
-          stroke-dasharray="283" stroke-dashoffset="54"
-          stroke-linecap="round"
-          transform="rotate(-90 60 60)"/>
-        <defs>
-          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#C9A84C"/>
-            <stop offset="100%" stop-color="#F5E6B8"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div class="ring-val">9%<span>alc/vol</span></div>
-    </div>
-  </div>
-
-  <table class="spec-table">
-    <tr><td>酒名</td><td>夢螢 <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(201,168,76,.6);font-size:.8rem;">Yumebotaru</em></td></tr>
-    <tr><td>產地</td><td>日本福岡縣</td></tr>
-    <tr><td>酒造</td><td>大賀酒造</td></tr>
-    <tr><td>釀造工法</td><td>獨門「福岡夢酵母1號」，低溫發酵保留甜酸平衡</td></tr>
-    <tr><td>風味</td><td>甜酸可口、輕盈透徹，清新米香與微酸果香</td></tr>
-  </table>
-
-  <div class="tags">
-    <span class="tag">甜酸可口</span>
-    <span class="tag">清新米香</span>
-    <span class="tag">微酸果香</span>
-    <span class="tag">輕盈透徹</span>
-    <span class="tag">低溫發酵</span>
-  </div>
-</section>
-
-<!-- §4 SENSORY -->
+<!-- §3 SENSORY (moved above specs) -->
 <section id="sensory" class="sec">
   <div class="eyebrow">
     <h2>聽覺與味覺</h2><span>✦</span>
@@ -400,6 +382,53 @@ body{font-family:'Noto Serif TC',serif;background:var(--night);color:var(--cream
   </div>
 </section>
 
+<!-- §4 SPECS -->
+<section id="specs" class="sec">
+  <div class="eyebrow">
+    <h2>職人與工法</h2><span>✦</span>
+  </div>
+
+  <!-- Glowing ring chart -->
+  <div class="ring-wrap">
+    <div class="ring-chart">
+      <svg viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(201,168,76,.08)" stroke-width="8"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="url(#goldGrad)" stroke-width="8"
+          stroke-dasharray="283" stroke-dashoffset="54"
+          stroke-linecap="round"
+          transform="rotate(-90 60 60)"/>
+        <defs>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#F5E6B8"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="ring-val">15%<span>alc/vol</span></div>
+    </div>
+  </div>
+
+  <table class="spec-table">
+    <tr><td>酒名</td><td>大賀 夢螢 <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(201,168,76,.6);font-size:.8rem;">Yumebotaru</em></td></tr>
+    <tr><td>產地</td><td>日本福岡縣</td></tr>
+    <tr><td>酒造</td><td>大賀酒造</td></tr>
+    <tr><td>米種</td><td>福岡縣產「夢一献」</td></tr>
+    <tr><td>酒精濃度</td><td>15%</td></tr>
+    <tr><td>釀造工法</td><td>使用「福岡夢酵母 1 號」，以極低溫發酵保留米香中的花果清甜</td></tr>
+    <tr><td>風味</td><td>甜酸可口、輕盈透徹，清新米香與優雅的花香尾韻</td></tr>
+    <tr><td>適飲溫度</td><td>10°C – 15°C（微涼即可，溫度稍回升能讓花香更盛）</td></tr>
+    <tr><td>醒酒時間</td><td>開瓶後建議靜置 10–20 分鐘，讓香氣從「夢境」中甦醒</td></tr>
+  </table>
+
+  <div class="tags">
+    <span class="tag">甜酸可口</span>
+    <span class="tag">清新米香</span>
+    <span class="tag">花香尾韻</span>
+    <span class="tag">輕盈透徹</span>
+    <span class="tag">低溫發酵</span>
+  </div>
+</section>
+
 <!-- §5 INSIGHT -->
 <section id="insight">
   <div class="eyebrow">
@@ -422,14 +451,17 @@ body{font-family:'Noto Serif TC',serif;background:var(--night);color:var(--cream
     <div class="f-venue-item">
       <span class="f-venue-date">3 / 30</span>
       <span class="f-venue-name">MuMu 咖啡</span>
+      <a href="https://linket.net/mumucafe" target="_blank" class="venue-follow">追蹤 →</a>
     </div>
     <div class="f-venue-item">
       <span class="f-venue-date">4 / 07</span>
       <span class="f-venue-name">坐客咖啡</span>
+      <a href="https://linket.net/zouke-cafe" target="_blank" class="venue-follow">追蹤 →</a>
     </div>
     <div class="f-venue-item">
       <span class="f-venue-date">4 / 11</span>
       <span class="f-venue-name">山上山下<br>埔里店</span>
+      <a href="https://www.instagram.com/3s3s.tw" target="_blank" class="venue-follow">追蹤 →</a>
     </div>
   </div>
 
@@ -446,9 +478,32 @@ body{font-family:'Noto Serif TC',serif;background:var(--night);color:var(--cream
       <li><a href="#specs">工法</a></li>
       <li><a href="#sensory">搭配</a></li>
     </ul>
-    <p class="f-warn">福岡縣大賀酒造 · 9% alc/vol · 飲酒過量有害健康 · 禁止酒駕 · 未滿18歲禁止飲酒</p>
   </div>
 </section>
+
+<!-- 聯名品牌 LOGO 列 -->
+<div class="partner-bar">
+  <a href="https://lin.ee/19k6X29" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-lanjue.svg" alt="蘭爵">
+  </a>
+  <a href="https://linket.net/mumucafe" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-mumu.svg" alt="MuMu咖啡">
+  </a>
+  <a href="https://linket.net/zouke-cafe" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-zuoke.svg" alt="坐客咖啡">
+  </a>
+  <a href="https://www.instagram.com/3s3s.tw" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-emo.svg" alt="山上山下">
+  </a>
+  <a href="https://lin.ee/19k6X29" target="_blank" class="partner-logo">
+    <img src="https://raw.githubusercontent.com/TonyLin1994code/logo/c2dda061cdf79ebc9ae86656ffba713cb7dc067d/logo-linket.svg" alt="LINKet">
+  </a>
+</div>
+
+<!-- 法規警語 -->
+<div class="legal-bar">
+  飲酒勿開車｜未滿十八歲者，禁止飲酒｜本品牌不販賣酒予未滿十八歲者｜飲酒過量有害健康
+</div>
 
 <script>
 // Generate fireflies
@@ -471,5 +526,6 @@ for(let i = 0; i < 28; i++){
   container.appendChild(ff);
 }
 </script>
+
 </body>
 </html>
